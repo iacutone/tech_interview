@@ -17,6 +17,11 @@ defmodule TechQuestionsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/register", UserController, only: [:create, :new]
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.

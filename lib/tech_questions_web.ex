@@ -41,6 +41,7 @@ defmodule TechQuestionsWeb do
 
       import TechQuestionsWeb.ErrorHelpers
       import TechQuestionsWeb.Gettext
+      import TechQuestions.Accounts.Auth, only: [signed_in?: 1]
       alias TechQuestionsWeb.Router.Helpers, as: Routes
     end
   end
