@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Tech Questions</title>
+    <title>Tech Interview</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
@@ -16,16 +16,13 @@
 
         <div class="w-full block flex-grow sm:flex sm:items-center sm:w-auto">
           <div class="text-sm sm:flex-grow">
-            <a
-              href="red_flags"
-              class="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4"
-              >
-              Red Flags
-            </a>
+            <%= link "Questions", to: Routes.question_path(@conn, :index), class: "block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4" %>
+            <%= link "About", to: Routes.page_path(@conn, :about), class: "block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4" %>
+            <%= link "Red Flags", to: Routes.page_path(@conn, :red_flags), class: "block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4" %>
           </div>
           <div>
             <%= if signed_in?(@conn) do %>
-              <%= link "Sign out", to: Routes.session_path(@conn, :delete), class: 'inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0' %>
+              <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: 'inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0' %>
             <% else %>
               <%= link "Sign In", to: Routes.session_path(@conn, :new), class: 'inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0' %>
               |
@@ -35,7 +32,7 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
+    <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>

@@ -14,7 +14,8 @@ defmodule TechQuestionsWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        # |> redirect(to: Routes.user_path(conn, :show, user))
+        |> put_session(:current_user_id, user.id)
+        |> redirect(to: Routes.question_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

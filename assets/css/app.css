@@ -9,3 +9,55 @@
 /* purgecss end ignore */
 
 @import "tailwindcss/utilities";
+
+.label {
+  @apply block text-gray-500 font-bold mb-1 pr-4;
+}
+
+.text-input {
+  @apply bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight
+}
+
+.text-input:focus {
+  @apply outline-none bg-white border-purple-500
+}
+
+.help-block {
+  @apply text-red-400 mb-2
+}
+
+.alert-danger {
+  @apply text-red-400 m-4 text-red-700
+}
+
+.alert-info {
+  @apply bg-blue-100 m-4 text-blue-700
+}
+
+button {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded
+}
+
+button:focus {
+  @apply outline-none shadow-outline
+}
+
+button:hover {
+  @apply bg-blue-700
+}
+
+.link {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded ml-4
+}
+
+.link:hover {
+  @apply bg-blue-700
+}
+
+ul {
+  @apply min-w-full bg-white mt-6
+}
+
+li {
+  @apply w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm
+}

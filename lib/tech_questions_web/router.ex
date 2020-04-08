@@ -19,6 +19,8 @@ defmodule TechQuestionsWeb.Router do
     get "/", PageController, :index
 
     resources "/register", UserController, only: [:create, :new]
+    resources "questions", QuestionController, except: [:delete]
+
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
