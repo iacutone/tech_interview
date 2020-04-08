@@ -1,4 +1,4 @@
-defmodule TechQuestions.DataCase do
+defmodule TechInterview.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule TechQuestions.DataCase do
 
   using do
     quote do
-      alias TechQuestions.Repo
+      alias TechInterview.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import TechQuestions.DataCase
+      import TechInterview.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(TechQuestions.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(TechInterview.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(TechQuestions.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(TechInterview.Repo, {:shared, self()})
     end
 
     :ok

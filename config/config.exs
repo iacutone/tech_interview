@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :tech_questions,
-  ecto_repos: [TechQuestions.Repo]
+config :tech_interview,
+  ecto_repos: [TechInterview.Repo]
 
 # Configures the endpoint
-config :tech_questions, TechQuestionsWeb.Endpoint,
+config :tech_interview, TechInterviewWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "aYSegLTzjBdQZ6DvhS6s9HI3SrPPHGPr+VT6CGlcrdyuPFanVfAXqKf32sKrW4J2",
-  render_errors: [view: TechQuestionsWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: TechQuestions.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: TechInterviewWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: TechInterview.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,

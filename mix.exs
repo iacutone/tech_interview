@@ -1,9 +1,9 @@
-defmodule TechQuestions.MixProject do
+defmodule TechInterview.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :tech_questions,
+      app: :tech_interview,
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule TechQuestions.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {TechQuestions.Application, []},
+      mod: {TechInterview.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

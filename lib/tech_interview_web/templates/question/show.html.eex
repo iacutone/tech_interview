@@ -1,0 +1,27 @@
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @question.title %>
+  </li>
+
+  <li>
+    <strong>Code:</strong>
+    <%= @question.code %>
+  </li>
+
+  <li>
+    <strong>Language:</strong>
+    <%= @question.language %>
+  </li>
+
+  <li>
+    <strong>Company:</strong>
+    <%= @question.company.name %>
+  </li>
+
+</ul>
+
+<%= if @question.user_id == TechInterview.Accounts.Auth.current_user(@conn).id do %>
+  <%= link "Edit", to: Routes.question_path(@conn, :edit, @question), class: 'link' %>
+<% end %>

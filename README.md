@@ -1,4 +1,4 @@
-# TechQuestions
+# TechInterview
 
 To start your Phoenix server:
 

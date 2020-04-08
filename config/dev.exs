@@ -1,8 +1,8 @@
 use Mix.Config
 
 # Configure your database
-config :tech_questions, TechQuestions.Repo,
-  database: "tech_questions_dev",
+config :tech_interview, TechInterview.Repo,
+  database: "tech_interview_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -13,7 +13,7 @@ config :tech_questions, TechQuestions.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :tech_questions, TechQuestionsWeb.Endpoint,
+config :tech_interview, TechInterviewWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -53,13 +53,13 @@ config :tech_questions, TechQuestionsWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :tech_questions, TechQuestionsWeb.Endpoint,
+config :tech_interview, TechInterviewWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/tech_questions_web/{live,views}/.*(ex)$",
-      ~r"lib/tech_questions_web/templates/.*(eex)$"
+      ~r"lib/tech_interview_web/{live,views}/.*(ex)$",
+      ~r"lib/tech_interview_web/templates/.*(eex)$"
     ]
   ]
 

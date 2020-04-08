@@ -1,4 +1,4 @@
-defmodule TechQuestions.Repo.Migrations.CreateCompanies do
+defmodule TechInterview.Repo.Migrations.CreateCompanies do
   use Ecto.Migration
 
   def change do
