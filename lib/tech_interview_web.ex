@@ -23,6 +23,7 @@ defmodule TechInterviewWeb do
 
       import Plug.Conn
       import TechInterviewWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias TechInterviewWeb.Router.Helpers, as: Routes
     end
   end
@@ -42,6 +43,7 @@ defmodule TechInterviewWeb do
       import TechInterviewWeb.ErrorHelpers
       import TechInterviewWeb.Gettext
       import TechInterview.Accounts.Auth, only: [signed_in?: 1]
+      import Phoenix.LiveView.Helpers
       alias TechInterviewWeb.Router.Helpers, as: Routes
     end
   end
@@ -51,6 +53,7 @@ defmodule TechInterviewWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 

@@ -1,9 +1,18 @@
 defmodule TechInterviewWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :tech_interview
 
+  @session_options [
+    store: :cookie,
+    key: "_my_app_key",
+    signing_salt: "somesigningsalt"
+  ]
+
   socket "/socket", TechInterviewWeb.UserSocket,
     websocket: true,
     longpoll: false
+
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -37,10 +46,6 @@ defmodule TechInterviewWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_tech_interview_key",
-    signing_salt: "JI1ZoXiC"
-
+  plug Plug.Session, @session_options
   plug TechInterviewWeb.Router
 end

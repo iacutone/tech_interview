@@ -15,7 +15,10 @@ config :tech_interview, TechInterviewWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "aYSegLTzjBdQZ6DvhS6s9HI3SrPPHGPr+VT6CGlcrdyuPFanVfAXqKf32sKrW4J2",
   render_errors: [view: TechInterviewWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: TechInterview.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: TechInterview.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: "af7hE4CCzGIpqvzm/0tUxu9Q5AdSf4mP"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
