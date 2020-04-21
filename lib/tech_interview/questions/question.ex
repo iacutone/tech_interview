@@ -5,7 +5,9 @@ defmodule TechInterview.Questions.Question do
   alias TechInterview.Company
 
   schema "question" do
-    field :code, :string
+    field :data_input, :string
+    field :data_output, :string
+    field :instructions, :string
     field :language, :string
     field :title, :string
     field :user_id, :integer
@@ -18,23 +20,23 @@ defmodule TechInterview.Questions.Question do
   @doc false
   def changeset(question, attrs) do
     question
-    |> cast(attrs, [:code, :language, :title, :company_id, :user_id])
-    |> validate_required([:code, :language, :title])
+    |> cast(attrs, [:data_input, :data_output, :instructions, :language, :title, :company_id, :user_id])
+    |> validate_required([:data_input, :data_output, :instructions, :language, :title])
     |> cast_assoc(:company, required: true)
   end
 
   def programming_languages do
     [
-      "",
-      "Elixir",
-      "Go",
-      "Java",
-      "JavaScript",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Swift",
-      "Rust"
+
+      [key: "", value: ""],
+      [key: "Elixir", value: "elixir"],
+      [key: "Go", value: "go"],
+      [key: "Java", value: "java"],
+      [key: "JavaScript", value: "js"],
+      [key: "PHP", value: "php"],
+      [key: "Python", value: "python"],
+      [key: "Ruby", value: "ruby"],
+      [key: "Swift", value: "swift"],
     ]
   end
 end

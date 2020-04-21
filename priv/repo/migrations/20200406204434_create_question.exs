@@ -3,7 +3,9 @@ defmodule TechInterview.Repo.Migrations.CreateQuestion do
 
   def change do
     create table(:question) do
-      add :code, :string
+      add :data_input, :string
+      add :data_output, :string
+      add :instructions, :string
       add :language, :string
       add :title, :string
       add :user_id, :integer
