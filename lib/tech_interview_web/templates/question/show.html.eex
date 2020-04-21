@@ -23,5 +23,5 @@
 </ul>
 
 <%= if @question.user_id == TechInterview.Accounts.Auth.current_user(@conn).id do %>
-  <%= link "Edit", to: Routes.question_path(@conn, :edit, @question), class: 'link' %>
+  <%= link "Edit", to: Routes.question_path(@conn, :edit, @question), class: 'link ml-4 mb-6' %>
 <% end %>
