@@ -1,13 +1,9 @@
-<ul>
+<script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
 
+<ul>
   <li>
     <strong>Title:</strong>
     <%= @question.title %>
-  </li>
-
-  <li>
-    <strong>Code:</strong>
-    <%= @question.code %>
   </li>
 
   <li>
@@ -16,12 +12,53 @@
   </li>
 
   <li>
+    <strong>Instructions:</strong>
+    <%= @question.instructions %>
+  </li>
+
+  <li>
+    <strong>Input code:</strong>
+    <div id="input-code-editor"></div>
+  </li>
+
+  <li>
+    <strong>Output code:</strong>
+    <div id="output-code-editor"></div>
+  </li>
+
+  <li>
     <strong>Company:</strong>
     <%= @question.company.name %>
   </li>
-
 </ul>
 
 <%= if @question.user_id == TechInterview.Accounts.Auth.current_user(@conn).id do %>
   <%= link "Edit", to: Routes.question_path(@conn, :edit, @question), class: 'link ml-4 mb-6' %>
 <% end %>
+
+<script>
+  input_editor = new CodeFlask('#input-code-editor', 
+    { 
+      language: 'js',
+      lineNumbers: true,
+      areaId: 'input-code-text',
+      ariaLabelledby: 'header1',
+      readonly: true
+    }
+  );
+
+  output_editor = new CodeFlask('#output-code-editor', 
+    { 
+      language: 'js',
+      lineNumbers: true,
+      areaId: 'output-code-text',
+      ariaLabelledby: 'header1',
+      readonly: true
+    }
+  );
+
+  var input_code = "<%= @question.data_input %>";
+  input_editor.updateCode(input_code);
+  var output_code = "<%= @question.data_output %>";
+  output_editor.updateCode(output_code);
+</script>
