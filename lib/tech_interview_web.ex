@@ -42,7 +42,7 @@ defmodule TechInterviewWeb do
 
       import TechInterviewWeb.ErrorHelpers
       import TechInterviewWeb.Gettext
-      import TechInterview.Accounts.Auth, only: [signed_in?: 1]
+      import TechInterview.Accounts.Auth, only: [signed_in?: 1, current_user: 1]
       import Phoenix.LiveView.Helpers
       alias TechInterviewWeb.Router.Helpers, as: Routes
     end

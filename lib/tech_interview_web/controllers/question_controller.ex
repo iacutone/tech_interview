@@ -1,6 +1,18 @@
 defmodule TechInterviewWeb.QuestionController do
   use TechInterviewWeb, :controller
 
+  plug TechInterviewWeb.Plugs.AuthenticateUser when action in [
+    :new,
+    :create, 
+    :edit, 
+    :update
+  ]
+
+  plug TechInterviewWeb.Plugs.AuthorizeUser when action in [
+    :edit, 
+    :update
+  ]
+
   alias TechInterview.Repo
   alias TechInterview.Questions
   alias TechInterview.Questions.Question
