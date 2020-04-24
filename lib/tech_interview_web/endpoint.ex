@@ -7,6 +7,8 @@ defmodule TechInterviewWeb.Endpoint do
     signing_salt: "JI1ZoXiC"
   ]
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", TechInterviewWeb.UserSocket,
     websocket: true,
     longpoll: false
