@@ -1,0 +1,48 @@
+<div class="md:flex md:items-center mb-6">
+  <div class="md:w-1/3">
+    <%= label(:company, :name, class: "label md:text-right md:mb-0") %>
+  </div>
+  <div class="md:w-2/3">
+    <%= if @disabled do %>
+      <input type="text" class="text-input" name="question[company][name]" value="<%= @search_phrase %>" phx-keyup="search" disabled>
+    <% else %>
+      <input type="text" class="text-input" name="question[company][name]" value="<%= @search_phrase %>" phx-keyup="search" placeholder="Company name">
+    <% end %>
+  </div>
+</div>
+
+<%= if @search_results != [] do %>
+  <div class="relative">
+    <div class="absolute z-50 left-0 right-0 rounded border border-gray-100 shadow py-2 bg-white">
+      <%= for search_result <- @search_results do %>
+        <div class="cursor-pointer p-2 hover:bg-gray-200 focus:bg-gray-200" phx-click="select" phx-value-id="<%= search_result.id %>">
+          <%= search_result.name %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="md:flex md:items-center mb-6">
+  <div class="md:w-1/3">
+    <%= label(:company, :website, class: "label md:text-right md:mb-0") %>
+  </div>
+  <div class="md:w-2/3">
+    <%= if @disabled do %>
+      <input type="text" class="text-input" name="question[company][website]" value="<%= @website %>" disabled>
+    <% else %>
+      <input type="text" class="text-input" name="question[company][website]" value="<%= @website %>" placeholder="Comany website">
+    <% end %>
+  </div>
+</div>
+
+<%= if @disabled do %>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+    </div>
+    <div class="md:w-2/3">
+      <a href="#" class="btn" phx-click="enable">Enable Company Fields</a>
+      <input type="hidden" name="company_id" value="<%= @id %>">
+    </div>
+  </div>
+<% end %>

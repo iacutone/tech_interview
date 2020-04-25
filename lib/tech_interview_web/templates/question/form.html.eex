@@ -7,6 +7,10 @@
     </div>
   <% end %>
 
+  <%= if @conn.private.phoenix_action == :new do %>
+    <%= live_render @conn, TechInterviewWeb.SearchFormLive %>
+  <% end %>
+
   <div class="md:flex md:items-center mb-6">
     <div class="md:w-1/3">
       <%= label f, :question_title, class: "label md:text-right md:mb-0" %>
@@ -42,8 +46,7 @@
       <%= label f, :data_input, class: "label md:text-right md:mb-0" %>
     </div>
     <div class="md:w-2/3">
-      <div id="input-code-editor"></div>
-      <%= hidden_input f, :data_input %>
+      <%= text_input f, :data_input, placeholder: "Data input", class: "text-input" %>
       <%= error_tag f, :data_input %>
     </div>
   </div>
@@ -53,33 +56,21 @@
       <%= label f, :data_output, class: "label md:text-right md:mb-0" %>
     </div>
     <div class="md:w-2/3">
-      <div id="output-code-editor"></div>
-      <%= hidden_input f, :data_output %>
+      <%= text_input f, :data_output, placeholder: "Data output", class: "text-input" %>
       <%= error_tag f, :data_output %>
     </div>
   </div>
 
-  <%= inputs_for f, :company, fn c -> %>
-    <div class="md:flex md:items-center mb-6">
-      <div class="md:w-1/3">
-        <%= label c, :name, class: "label md:text-right md:mb-0" %>
-      </div>
-      <div class="md:w-2/3">
-        <%= text_input c, :name, placeholder: "Company name", class: "text-input" %>
-        <%= error_tag c, :name %>
-      </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <%= label f, :code, class: "label md:text-right md:mb-0" %>
     </div>
-
-    <div class="md:flex md:items-center mb-6">
-      <div class="md:w-1/3">
-        <%= label c, :website, class: "label md:text-right md:mb-0" %>
-      </div>
-      <div class="md:w-2/3">
-        <%= text_input c, :website, placeholder: "Company website", class: "text-input" %>
-        <%= error_tag c, :website %>
-      </div>
+    <div class="md:w-2/3">
+      <div id="output-code-editor"></div>
+      <%= hidden_input f, :code %>
+      <%= error_tag f, :code %>
     </div>
-  <% end %>
+  </div>
 
   <p class="bg-gray-100 text-gray-700 ml-6 p-4">Your question will remain anonymous.</p>
 
@@ -92,31 +83,20 @@
 <% end %>
 
 <script>
-  input_editor = new CodeFlask('#input-code-editor', 
+  code_editor = new CodeFlask('#output-code-editor', 
     { 
       language: 'js',
       lineNumbers: true,
-      areaId: 'input-code-text',
+      areaId: 'code-text',
       ariaLabelledby: 'header1',
       handleTabs: true,
     }
   );
 
-  output_editor = new CodeFlask('#output-code-editor', 
-    { 
-      language: 'js',
-      lineNumbers: true,
-      areaId: 'output-code-text',
-      ariaLabelledby: 'header1',
-      handleTabs: true,
-    }
-  );
-
-  document.getElementById('input-code-text').onkeyup = function() {
-    document.getElementById("question_data_input").value = input_editor.code
-   }
-
-  document.getElementById('output-code-text').onkeyup = function() {
-    document.getElementById("question_data_output").value = output_editor.code
+  document.getElementById('code-text').onkeyup = function() {
+    document.getElementById("question_code").value = code_editor.code
   }
+
+  var output = document.getElementById("question_code").value
+  code_editor.updateCode(output);
 </script>

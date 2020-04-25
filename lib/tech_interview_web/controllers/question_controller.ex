@@ -33,6 +33,23 @@ defmodule TechInterviewWeb.QuestionController do
     )
   end
 
+  def create(conn, %{"company_id" => id, "question" => question_params}) do
+    params_with_user = Map.put(question_params, "user_id", Plug.Conn.get_session(conn, :current_user_id))
+    case Questions.create_question(params_with_user, id) do
+      {:ok, question} ->
+        conn
+        |> put_flash(:info, "Question created successfully.")
+        |> redirect(to: Routes.question_path(conn, :show, question))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, 
+          "new.html", 
+          changeset: changeset, 
+          languages: Question.programming_languages()
+        )
+    end
+  end
+
   def create(conn, %{"question" => question_params}) do
     params_with_user = Map.put(question_params, "user_id", Plug.Conn.get_session(conn, :current_user_id))
     case Questions.create_question(params_with_user) do
@@ -64,6 +81,25 @@ defmodule TechInterviewWeb.QuestionController do
       changeset: changeset,
       languages: Question.programming_languages()
     )
+  end
+
+  def update(conn, %{"id" => id, "company_id" => company_id, "question" => question_params}) do
+    question = Questions.get_question!(id) |> Repo.preload(:company)
+
+    params_with_user = Map.put(question_params, "user_id", Plug.Conn.get_session(conn, :current_user_id))
+    case Questions.create_question(params_with_user, id) do
+      {:ok, question} ->
+        conn
+        |> put_flash(:info, "Question created successfully.")
+        |> redirect(to: Routes.question_path(conn, :show, question))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, 
+          "new.html", 
+          changeset: changeset, 
+          languages: Question.programming_languages()
+        )
+    end
   end
 
   def update(conn, %{"id" => id, "question" => question_params}) do

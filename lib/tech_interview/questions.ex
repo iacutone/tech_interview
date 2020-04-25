@@ -50,6 +50,12 @@ defmodule TechInterview.Questions do
       {:error, %Ecto.Changeset{}}
 
   """
+  def create_question(attrs, id) do
+    %Question{}
+    |> Question.changeset(attrs, id)
+    |> Repo.insert()
+  end
+
   def create_question(attrs \\ %{}) do
     %Question{}
     |> Question.changeset(attrs)

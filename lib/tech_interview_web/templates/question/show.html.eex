@@ -2,6 +2,11 @@
 
 <ul>
   <li>
+    <strong>Company:</strong>
+    <%= @question.company.name %>
+  </li>
+
+  <li>
     <strong>Title:</strong>
     <%= @question.title %>
   </li>
@@ -13,23 +18,23 @@
 
   <li>
     <strong>Instructions:</strong>
-    <%= @question.instructions %>
+    <%= text_to_html(@question.instructions) %>
   </li>
 
   <li>
     <strong>Input code:</strong>
-    <div id="input-code-editor"></div>
+    <%= @question.data_input %>
   </li>
 
   <li>
     <strong>Output code:</strong>
-    <div id="output-code-editor"></div>
+    <%= @question.data_output %>
   </li>
 
-  <li>
-    <strong>Company:</strong>
-    <%= @question.company.name %>
-  </li>
+  <div class="m-4 uppercase font-semibold text-sm">
+    <strong>Code:</strong>
+  </div>
+  <div class="m-4" id="output-code-editor"></div>
 </ul>
 
 <%= if @question.user_id == TechInterview.Accounts.Auth.current_user(@conn).id do %>
@@ -37,28 +42,14 @@
 <% end %>
 
 <script>
-  input_editor = new CodeFlask('#input-code-editor', 
+  editor = new CodeFlask('#output-code-editor', 
     { 
       language: 'js',
       lineNumbers: true,
-      areaId: 'input-code-text',
-      ariaLabelledby: 'header1',
       readonly: true
     }
   );
 
-  output_editor = new CodeFlask('#output-code-editor', 
-    { 
-      language: 'js',
-      lineNumbers: true,
-      areaId: 'output-code-text',
-      ariaLabelledby: 'header1',
-      readonly: true
-    }
-  );
-
-  var input_code = "<%= @question.data_input %>";
-  input_editor.updateCode(input_code);
-  var output_code = "<%= @question.data_output %>";
-  output_editor.updateCode(output_code);
+  var code = `<%= raw @question.code %>`;
+  editor.updateCode(code);
 </script>

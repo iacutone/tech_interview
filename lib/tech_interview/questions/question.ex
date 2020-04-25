@@ -7,6 +7,7 @@ defmodule TechInterview.Questions.Question do
   schema "question" do
     field :data_input, :string
     field :data_output, :string
+    field :code, :string
     field :instructions, :string
     field :language, :string
     field :title, :string
@@ -17,17 +18,21 @@ defmodule TechInterview.Questions.Question do
     timestamps()
   end
 
-  @doc false
+  def changeset(question, attrs, _id) do
+    question
+    |> cast(attrs, [:data_input, :data_output, :code, :instructions, :language, :title, :company_id, :user_id])
+    |> validate_required([:data_input, :data_output, :code, :instructions, :language, :title])
+  end
+
   def changeset(question, attrs) do
     question
-    |> cast(attrs, [:data_input, :data_output, :instructions, :language, :title, :company_id, :user_id])
-    |> validate_required([:data_input, :data_output, :instructions, :language, :title])
+    |> cast(attrs, [:data_input, :data_output, :code, :instructions, :language, :title, :company_id, :user_id])
+    |> validate_required([:data_input, :data_output, :code, :instructions, :language, :title])
     |> cast_assoc(:company, required: true)
   end
 
   def programming_languages do
     [
-
       [key: "", value: ""],
       [key: "Elixir", value: "elixir"],
       [key: "Go", value: "go"],

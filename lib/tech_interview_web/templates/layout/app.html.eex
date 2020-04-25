@@ -18,6 +18,7 @@
 
         <div class="w-full block flex-grow sm:flex sm:items-center sm:w-auto">
           <div class="text-sm sm:flex-grow">
+            <%= link "Companies", to: Routes.company_path(@conn, :index), class: "block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4" %>
             <%= link "Questions", to: Routes.question_path(@conn, :index), class: "block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4" %>
           </div>
           <div>
