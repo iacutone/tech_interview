@@ -17,7 +17,7 @@ defmodule TechInterviewWeb.Router do
   scope "/", TechInterviewWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", CompanyController, :index
 
     resources "/register", UserController, only: [:create, :new]
     resources "/companies", CompanyController, only: [:show, :index]
